@@ -1,0 +1,25 @@
+model:
+  num_classes: 10
+  model_name: resnet18
+
+data:
+  task: classification
+  batch_size: 32
+  num_workers: 4
+  # transform torchvision.transforms
+  train_transform:
+    - _target_: ToTensor
+    - _target_: Normalize
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]
+
+  valid_transform:
+    - _target_: ToTensor
+    - _target_: Normalize
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]
+
+trainer:
+  max_epochs: 1
+  fast_dev_run: true
+  accelerator: cpu
